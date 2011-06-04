@@ -30,7 +30,7 @@ __email__ = "eopage@byu.net"
 __version__ = constants.__version__
 __build__ = constants.__build__
 __changelog__ = """
-* Unescaping HTML escaped characters in names
+* Packaging GTK version for historical reasons
 """.strip()
 
 
@@ -108,9 +108,9 @@ def build_package(distribution):
 	p.postinstall = __postinstall__
 	p.preremove = __preremove__
 	p.icon = {
-		"debian": "26x26-dialcentral.png",
-		"diablo": "26x26-dialcentral.png",
-		"fremantle": "64x64-dialcentral.png", # Fremantle natively uses 48x48
+		"debian": "26x26-dialcentral-gtk.png",
+		"diablo": "26x26-dialcentral-gtk.png",
+		"fremantle": "64x64-dialcentral-gtk.png", # Fremantle natively uses 48x48
 	}[distribution]
 	p["/opt/%s/bin" % __appname__] = [ "%s.py" % __appname__ ]
 	for relPath, files in unflatten_files(find_files("src", ".")).iteritems():
@@ -121,10 +121,10 @@ def build_package(distribution):
 			"|".join((oldName, newName))
 			for (oldName, newName) in files
 		)
-	p["/usr/share/applications/hildon"] = ["dialcentral.desktop"]
-	p["/usr/share/icons/hicolor/26x26/hildon"] = ["26x26-dialcentral.png|dialcentral.png"]
-	p["/usr/share/icons/hicolor/64x64/hildon"] = ["64x64-dialcentral.png|dialcentral.png"]
-	p["/usr/share/icons/hicolor/scalable/hildon"] = ["scale-dialcentral.png|dialcentral.png"]
+	p["/usr/share/applications/hildon"] = ["dialcentral-gtk.desktop"]
+	p["/usr/share/icons/hicolor/26x26/hildon"] = ["26x26-dialcentral-gtk.png|dialcentral-gtk.png"]
+	p["/usr/share/icons/hicolor/64x64/hildon"] = ["64x64-dialcentral-gtk.png|dialcentral-gtk.png"]
+	p["/usr/share/icons/hicolor/scalable/hildon"] = ["scale-dialcentral-gtk.png|dialcentral-gtk.png"]
 
 	if distribution == "debian":
 		print p
